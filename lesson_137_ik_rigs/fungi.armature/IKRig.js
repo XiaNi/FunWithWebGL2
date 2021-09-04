@@ -5,9 +5,25 @@ import Quat from "../fungi/maths/Quat.js";
 
 class IKRig{
 	constructor(){
+		/**
+		 *
+		 * @type {Armature}
+		 */
 		this.arm 	= null;		// Reference back to Armature Component
+		/**
+		 *
+		 * @type {Pose}
+		 */
 		this.tpose	= null;		// TPose or Bind Pose, TPose is better for IK
+		/**
+		 *
+		 * @type {Pose}
+		 */
 		this.pose	= null;		// Pose object to manipulate before applying to bone entities
+		/**
+		 *
+		 * @type {Object.<string,Chain>}
+		 */
 		this.chains = {};		// Bone Chains, Usually Limbs / Spine / Hair / Tail
 		this.points = {};		// Main Single Bones of the Rig, like Head / Hip / Chest
 
@@ -132,7 +148,11 @@ IKRig.ARM_MIXAMO = 1;
 
 class Chain{
 	constructor( ){ // axis="z"
-		this.bones		= new Array();	// Index to a bone in an armature / pose
+		/**
+		 *
+		 * @type {{ idx: number, len: number}[]}
+		 */
+		this.bones		= [];	// Index to a bone in an armature / pose
 		this.len		= 0;			// Chain Length
 		this.len_sqr	= 0;			// Chain Length Squared, Cached for Checks without SQRT
 		this.cnt		= 0;			// How many Bones in the chain
